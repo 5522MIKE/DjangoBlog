@@ -65,6 +65,18 @@ urlpatterns = [
             views.ArchivesView.as_view()),
         name='archives'),
     path(
+        'user.html',
+        cache_page(
+            60 * 60)(
+            views.UserView.as_view()),
+        name='user'),  
+    path(
+        'writecenter.html',
+        cache_page(
+            60 * 60)(
+            views.WriteCenterView.as_view()),
+        name='write_center'),    
+    path(
         'links.html',
         views.LinkListView.as_view(),
         name='links'),

@@ -256,6 +256,38 @@ class ArchivesView(ArticleListView):
         cache_key = 'archives'
         return cache_key
 
+class UserView(ArticleListView):
+    '''
+    个人中心页面
+    '''
+    page_type = '个人中心'
+    paginate_by = None
+    page_kwarg = None
+    template_name = 'blog/user.html'
+
+    def get_queryset_data(self):
+        return Article.objects.filter(status='p').all()
+
+    def get_queryset_cache_key(self):
+        cache_key = 'users'
+        return cache_key
+
+class WriteCenterView(ArticleListView):
+    '''
+    写作中心页面
+    '''
+    page_type = '写作中心'
+    paginate_by = None
+    page_kwarg = None
+    template_name = 'blog/write_center.html'
+
+    def get_queryset_data(self):
+        return Article.objects.filter(status='p').all()
+
+    def get_queryset_cache_key(self):
+        cache_key = 'writer_center'
+        return cache_key
+
 
 class LinkListView(ListView):
     model = Links

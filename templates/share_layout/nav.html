@@ -1,30 +1,46 @@
-<nav id="site-navigation" class="main-navigation" role="navigation">
-    <button class="menu-toggle">菜单</button>
-    <a class="assistive-text" href="#content" title="跳至正文">跳至正文</a>
-    <div class="menu-%e8%8f%9c%e5%8d%95-container">
-        <ul id="menu-%e8%8f%9c%e5%8d%95" class="nav-menu">
-            <li id="menu-item-3498"
-                class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-3498">
-                <a href="/">首页</a></li>
-
-            {% load blog_tags %}
-            {% query nav_category_list parent_category=None as root_categorys %}
-            {% for node in root_categorys %}
-                {% include 'share_layout/nav_node.html' %}
-            {% endfor %}
-            {% if nav_pages %}
-                {% for node in nav_pages %}
-
-                    <li id="menu-item-{{ node.pk }}"
-                        class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-{{ node.pk }}">
-                        <a href="{{ node.get_absolute_url }}">{{ node.title }}</a>
-                    </li>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">首页</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                {% load blog_tags %}
+                {% query nav_category_list parent_category=None as root_categorys %}
+                {% for node in root_categorys %}
+                    {% include 'share_layout/nav_node.html' %}
                 {% endfor %}
-            {% endif %}
-            <li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children">
+                {% if nav_pages %}
+                    {% for node in nav_pages %}
 
-                <a href="{% url "blog:archives" %}">文章归档</a>
-            </li>
-        </ul>
+                        <li id="menu-item-{{ node.pk }}"
+                            class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-{{ node.pk }}">
+                            <a href="{{ node.get_absolute_url }}">{{ node.title }}</a>
+                        </li>
+                    {% endfor %}
+                {% endif %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url "blog:archives" %}">文章归档</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url "blog:user" %}">个人中心</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url "blog:write_center" %}">写作中心</a>
+                </li>
+            </ul>
+            <!-- <form class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form> -->
+            <form role="search" method="get" id="searchform" class="d-flex" action="/search">
+                <div>
+                    <label class="screen-reader-text" for="s">搜索：</label>
+                    <input type="text" value="" name="q" id="q"/>
+                    <input type="submit" id="searchsubmit" value="搜索"/>
+                </div>
+            </form>
+        </div>
     </div>
-</nav><!-- #site-navigation -->
+</nav>
