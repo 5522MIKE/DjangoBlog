@@ -1,0 +1,140 @@
+{% extends 'share_layout/base.html' %}
+{% load blog_tags %}
+{% load cache %}
+{% block header %}
+
+    <title>写作中心 | {{ SITE_DESCRIPTION }}</title>
+
+    <meta name="description" content="{{ SITE_SEO_DESCRIPTION }}"/>
+    <meta name="keywords" content="{{ SITE_KEYWORDS }}"/>
+    <meta property="og:type" content="blog"/>
+    <meta property="og:title" content="{{ SITE_NAME }}"/>
+    <meta property="og:description" content="{{ SITE_DESCRIPTION }}"/>
+    <meta property="og:url" content="{{ SITE_BASE_URL }}"/>
+    <meta property="og:site_name" content="{{ SITE_NAME }}"/>
+    <style type="text/css"> 
+        .accordion {
+            width: 600px;
+            font-size: 16px;
+            float: left;
+        }
+        .data-show .card {
+            height: 100px;
+            margin: 10px;
+        }
+        .button-right {
+            float: right;
+        }
+        .data-card {
+            text-align: center; 
+            height: 60px; 
+            line-height: 60px; 
+            font-size: 40px;
+        }
+        .data-card > span {
+            font-size: 60px; 
+            font-style: bold; 
+            width: 100px; 
+            text-align: center;
+        }
+    </style>
+
+{% endblock %}
+{% block content %}
+<div class="main-content">
+    <div class="accordion" id="accordionExample">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    数据中心
+                </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                <div class="accordion-body data-show">
+                    <div class="row">
+                        <div class="col">
+                            <div class="card">
+                                <span>博客数量:</span>
+                                <div class="data-card">
+                                    <span>0</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card">
+                                <span>总阅读数:</span>
+                                <div class="data-card">
+                                    <span>0</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card">
+                                <span>收藏数:</span>
+                                <div class="data-card">
+                                    <span>0</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="card">
+                                <span>点赞数:</span>
+                                <div class="data-card">
+                                    <span>0</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card">
+                                <span>评论数:</span>
+                                <div class="data-card">
+                                    <span>0</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingTwo">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    博客管理
+                </button>
+            </h2>
+        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+                <ul class="list-group">
+                    {% for article in article_list %}
+                    <li class="list-group-item">
+                        <span>{{ article.title }}</span>
+                        <div class="button-right">
+                            <button type="button" class="btn btn-link">修改</button>
+                            <button type="button" class="btn btn-link">屏蔽</button>
+                            <button type="button" class="btn btn-link">删除</button>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+  
+{% endblock %}
+
+{% block sidebar %}
+{% load_sidebar user 'i' %}
+{% endblock %}
+
+<script type="text/javascript">
+
+</script>
+
+
+

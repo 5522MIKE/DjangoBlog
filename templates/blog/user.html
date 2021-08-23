@@ -1,0 +1,92 @@
+{% extends 'share_layout/base.html' %}
+{% load blog_tags %}
+{% load cache %}
+{% block header %}
+
+    <title>个人中心 | {{ SITE_DESCRIPTION }}</title>
+
+    <meta name="description" content="{{ SITE_SEO_DESCRIPTION }}"/>
+    <meta name="keywords" content="{{ SITE_KEYWORDS }}"/>
+    <meta property="og:type" content="blog"/>
+    <meta property="og:title" content="{{ SITE_NAME }}"/>
+    <meta property="og:description" content="{{ SITE_DESCRIPTION }}"/>
+    <meta property="og:url" content="{{ SITE_BASE_URL }}"/>
+    <meta property="og:site_name" content="{{ SITE_NAME }}"/>
+    <style type="text/css">
+        .main-content {
+            float: left;
+        }
+        .user-card {
+            width: 600px;
+            font-size: 16px;
+        }
+        .image, img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 1px solid;
+            border-color: #000;
+        }
+        .user-name {
+            margin-top: 4px;
+        }
+        .user-left {
+            float: left;
+            text-align: center;
+        }
+        .user-right {
+            float: left;
+            position: relative;
+            left: 100px;
+            line-height: 24px;
+        }
+        .table-list {
+            margin-top: 30px;
+        }
+    </style>
+
+{% endblock %}
+{% block content %}
+<div class="main-content">
+    <div class="card user-card">
+        <div class="card-body">
+            <div>
+                <div class="user-left">
+                    <div class="image"><img src="" alt=""></div>
+                    <div class="user-name">司齐</div>
+                </div>
+                <div class="user-right">
+                    <div>用户id：000001</div>
+                    <div>昵称： 司齐</div>
+                    <div><span>个人简介:</span>
+                        
+                    </div>
+                    <div>其他</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 个人博客列表 -->
+    <div class="card table-list">
+        <!-- Default panel contents -->
+        <div class="card-title">博客列表</div>
+        <!-- Table -->
+        <table class="table">
+            <ul class="list-group">
+                {% for article in article_list %}
+                <li class="list-group-item">
+                    {% load_article_detail article True user %}
+                </li>
+                {% endfor %}
+            </ul>
+        </table>
+    </div>
+</div>
+{% endblock %}
+
+
+{% block sidebar %}
+    {% load_sidebar user 'i' %}
+{% endblock %}
+
+
