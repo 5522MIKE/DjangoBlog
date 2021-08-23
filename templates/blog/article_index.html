@@ -15,9 +15,16 @@
     <meta property="og:description" content="{{ SITE_DESCRIPTION }}"/>
     <meta property="og:url" content="{{ SITE_BASE_URL }}"/>
     <meta property="og:site_name" content="{{ SITE_NAME }}"/>
+    <style type="text/css">
+        .card {
+            width: 600px;
+            float: left;
+        }
+    </style>
 {% endblock %}
 {% block content %}
-    <div id="primary" class="site-content">
+<div class="card">
+    <div id="primary">
         <div id="content" role="main">
             {% if page_type and tag_name %}
                 <header class="archive-header">
@@ -31,11 +38,10 @@
             {% endfor %}
             {% if is_paginated %}
                 {% load_pagination_info page_obj page_type tag_name %}
-
             {% endif %}
         </div><!-- #content -->
     </div><!-- #primary -->
-
+</div>
 {% endblock %}
 {% block sidebar %}
     {% with request.user.username|add:linktype as cachekey %}
