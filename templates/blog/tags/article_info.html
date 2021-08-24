@@ -1,5 +1,11 @@
 {% load blog_tags %}
 {% load cache %}
+<style type="text/css">
+    .card {
+        width: 600px;
+    }
+</style>
+<div class="card">
 <article id="post-{{ article.pk }} "
          class="post-{{ article.pk }} post type-post status-publish format-standard hentry">
     <header class="entry-header">
@@ -59,3 +65,4 @@
     {% load_article_metas article user %}
 
 </article><!-- #post -->
+</div>
