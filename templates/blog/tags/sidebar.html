@@ -89,7 +89,7 @@
                 {% for tag,count,size in sidebar_tags %}
                     <a href="{{ tag.get_absolute_url }}"
                        class="tag-link-{{ tag.id }} tag-link-position-{{ tag.id }}"
-                       style="font-size: {{ size }}pt;" title="{{ count }}个话题"> {{ tag.name }}
+                       style="font-size: {{ size }} pt;" title="{{ count }}个话题"> {{ tag.name }}
                     </a>
                 {% endfor %}
             </div>
@@ -111,15 +111,14 @@
             {% if user.is_authenticated %}
                 <li><a href="{% url "account:logout" %}" rel="nofollow">登出</a>
                 </li>
-
             {% else %}
                 <li><a href="{% url "account:login" %}" rel="nofollow">登录</a>
             {% endif %}
-            {% if user.is_superuser %}
+            <!-- {% if user.is_superuser %}
                 <li><a href="{% url "blog:refresh" %}" target="_blank">刷新缓存</a></li>
                 <li><a href="{% url 'owntracks:show_dates' %}" target="_blank">运动轨迹记录</a></li>
-            {% endif %}
-            <li><a href="http://gitbook.lylinux.net" target="_blank" rel="nofollow">GitBook</a></li>
+            {% endif %} -->
+            <!-- <li><a href="http://gitbook.lylinux.net" target="_blank" rel="nofollow">GitBook</a></li> -->
         </ul>
     </aside>
     <div id="rocket" class="show" title="点我返回顶部"></div>
