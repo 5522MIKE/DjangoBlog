@@ -15,6 +15,7 @@
     <style type="text/css">
         .main-content {
             float: left;
+            border-style: none;
         }
         .user-card {
             width: 600px;
@@ -24,8 +25,7 @@
             width: 80px;
             height: 80px;
             border-radius: 50%;
-            border: 1px solid;
-            border-color: #000;
+            
         }
         .user-name {
             margin-top: 4px;
@@ -67,19 +67,15 @@
         </div>
     </div>
     <!-- 个人博客列表 -->
-    <div class="card table-list">
+    <div class="card  border-light table-list">
         <!-- Default panel contents -->
         <div class="card-title">博客列表</div>
-        <!-- Table -->
-        <table class="table">
-            <ul class="list-group">
-                {% for article in article_list %}
-                <li class="list-group-item">
-                    {% load_article_detail article True user %}
-                </li>
-                {% endfor %}
-            </ul>
-        </table>
+        <!-- Table -->   
+        {% for article in article_list %}
+        
+            {% load_article_detail article True user %}
+        
+        {% endfor %}
     </div>
 </div>
 {% endblock %}
